@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Audio Tour</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+      body{
+        margin: 0;
+      }
+      canvas{
+        width: 100%;
+        height: 100%;
+      }
+  </style>
+  <script src="https://assets.what3words.com/sdk/v3/what3words.js?key=ZZ38BH5Z"></script>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<button id = "find-me">Show my location</button><br/>
+<p id = "status"></p>
+<a id = "map-link" target="_blank" data_lat="" data_long="" data_w3wds = ""></a>
+
+<audio data-key="70" data-lat="spell.commented.across" data-long="stars.flame.riders" data-w3wds="stars.flame.riders" controls preload="auto">
+<source src="https://canaltouraudiofiles.s3.eu-west-2.amazonaws.com/Williamscraig+English.mp3" type="audio/mp3">
+</audio>
+   
+<!-- partial -->
+  <script  src="script.js"></script>
+
+  <script>
+    //adds a listening element with a callback to play the audio on the listened for event
+    audiohandler = () => {
+        window.addEventListener('keydown', (event) => {
+            let audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+            //let audio = new Audio("https://canaltouraudiofiles.s3.eu-west-2.amazonaws.com/Williamscraig+English.mp3")
+            if(!audio) return; //stop the audio from running altogether
+            //audio.addEventListener("canplay", event => {
+                /* the audio is now playable; play it if permissions allow */
+                //audio.currentTime = 0;//rewind to the start, probably won't need this in the end
+                audio.play();
+            //});
+        });
+    }
+
+    window.onload = audiohandler;
+    const mapLink = document.querySelector('#map-link');
+    function geoFindMe() {
+
+        const status = document.querySelector('#status');
+        
+
+        mapLink.href = '';
+        mapLink.textContent = '';
+
+        function success(position) {
+        const latitude  = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        status.textContent = '';
+
+        if(latitude === mapLink.getAttribute("data_lat") && longitude === mapLink.getAttribute("data_long")){
+            return;
+        } else {
+       
+            what3words.api.convertTo3wa({lat: latitude, lng: longitude}, 'en')
+                .then(function(response) {
+                console.log("[convertTo3wa]", response.words);
+                mapLink.setAttribute("data_w3wds", response.words);
+                mapLink.textContent = response.words;
+                mapLink.href = response.map;
+            });
+            mapLink.setAttribute("data_lat", latitude)
+            mapLink.setAttribute("data_long", longitude)
+        }
+        }
+
+        function error() {
+        status.textContent = 'Unable to retrieve your location';
+        }
+
+        if(!navigator.geolocation) {
+        status.textContent = 'Geolocation is not supported by your browser';
+        } else {
+        status.textContent = 'Locating…';
+        navigator.geolocation.getCurrentPosition(success, error);
+        }
+
+    }
+
+    //Create a recurring ddunction call:
+    window.setInterval(geoFindMe, 2000);
+    //document.querySelector('#find-me').addEventListener('click', geoFindMe);
+    // Select the node that will be observed for mutations
+    //const targetNode = document.getElementById('some-id');
+    // Options for the observer (which mutations to observe)
+    const config = { attributes: true, childList: true, subtree: true };
+    // Callback function to execute when mutations are observed
+    const callback = function(mutationsList, observer) {
+        // Use traditional 'for loops' for IE 11
+        for(const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                console.log('A child node has been added or removed.');
+            }
+            else if (mutation.type === 'attributes') {
+                console.log('The ' + mutation.attributeName + ' attribute was modified.');
+                console.log(mutation);
+                //todo write test to see if geo-position matches any of the audio files, and if so, play that file 
+                if(mutation.attributeName === "data_w3wds"){
+                    let audio = document.querySelector(`audio[data_w3wds="${mapLink.getAttribute(mutation.attributeName)}"]`);
+                    if(!audio) return;
+                    audio.play();
+                }
+            }
+        }
+    };
+    // Create an observer instance linked to the callback function
+    const observer = new MutationObserver(callback);
+    // Start observing the target node for configured mutations
+    observer.observe(mapLink, config);
+    // Later, you can stop observing
+    observer.disconnect();
+  </script>
+
+</body>
+</html>
