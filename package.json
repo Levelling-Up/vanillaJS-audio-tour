@@ -1,6 +1,6 @@
 {
-  "name": "3Davatar",
-  "description": "A 3D Avatar app",
+  "name": "AudioTour",
+  "description": "A Geolocated Audio Tour",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
