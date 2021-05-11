@@ -1,0 +1,35 @@
+Web Links Used so Far:
+
+Prior Art and Background:
+They basically want a clone of this:
+https://www.nubart.eu/ticket-audioguide-in-one.html
+Other interesting projects to look at/borrow from:
+https://labs.acmi.net.au/an-open-source-static-museum-audio-guide-4c5cd83dbdcb
+https://roundware.org/
+https://echoes.xyz/
+https://sonicmaps.xyz/
+https://voicemap.me/
+https://blogs.bl.uk/digital-scholarship/2019/08/creating-geo-located-digital-sound-walks.html
+
+Geolocation Fundamentals:
+https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+https://stackoverflow.com/questions/17348338/navigator-geolocation-getcurrentposition-doesnt-work-on-android-google-chrome
+https://support.apple.com/en-gb/HT207092
+https://github.com/bmoren/p5.geolocation
+
+Web Audio Fundamentals:
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement/Audio
+3rd party audio options
+https://code.tutsplus.com/tutorials/15-best-html5-audio-players--cms-28796
+https://amazingaudioplayer.com/quick-start-guide/
+
+Other JS research:
+https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
+
+Using QR codes:
+https://www.qr-code-generator.com/free-generator/?ut_source=google_c&ut_medium=cpc&ut_campaign=en_top_kw&ut_content=qr_generator_exact&ut_term=qr-code-generator_e&gclid=Cj0KCQjwytOEBhD5ARIsANnRjVhn8DpT4l7-cEPDHA4vlls10fzTaVWjXy7SRMksiZAfdvej02voSOQaAkMiEALw_wcB
+https://www.twilio.com/blog/qr-codes-security-shallow-dive
+
+Libraries and APIs:
+https://developer.what3words.com/tutorial/javascript
+https://www.npmjs.com/package/express-sslify
