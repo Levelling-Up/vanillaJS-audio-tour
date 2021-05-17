@@ -1,0 +1,34 @@
+Audio Tours Team Meeting
+
+Date: Sunday 23rd May
+Time: 6pm - 8pm (BST) 7pm - 9pm (CET)
+Attendees:
+Meeting Chair: Henriette
+
+Meeting Objective
+Define scope of our MVP, confirm the tech stack and assign roles to team members. Also we will set milestones for the project.
+
+Agenda
+Before the meeting all attendees will have read the links and the client brief provided in the repo. They will
+have forked the project and successfully deployed the app to Heroku. They will have made at least one change to the app.
+Help will be available 1-2-1 for anyone who is stuck or has questions.
+Anyone who hasn't completed the above will be asked to leave the meeting.
+
+1) Presentation of the brief: Erica - 5mins
+2) Presentation of other background and similar projects: 15 mins: split between team members
+3) Presentation of recommendations given by Codebar coach: any team member that was in the coaching session
+4) Decide on the tech stack
+5) Assign remaining non-tech roles. 
+6) Assign tech roles i.e. front-end, back-end, CI/CD, tests
+
+Notes & Decisions
+-
+-
+-
+-
+
+Next Steps
+-
+-
+-
+-
